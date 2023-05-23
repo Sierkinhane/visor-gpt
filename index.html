@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VisorGPT">
+  <meta name="keywords" content="Visual Prior, Generative Pre-Training, Conditionaly Image Synthesis">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VisorGPT</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <meta name="google-site-verification" content="6lbYN1vX7A4sD8SrVniq84UEKyEUSBgxeP7d3FjuuK0" />
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <!-- <link rel="icon" href="./static/images/icon.png"> -->
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="shortcut icon" href="path/to/favicon.ico" type="image/x-icon">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  </head>
+
+  <style>
+
+    #main{
+        position: relative;;
+        width: 1200px;
+    }
+
+    .box{
+        float: left;
+        padding: 15px 0 0 15px;
+/*        background-color: red;*/
+    }
+
+    .pic{
+        width: 500px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .pic img{
+        width: 500px;
+    }
+
+  </style>
+
+
+
+  <body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h2 class="title is-2 publication-title">Learning Visual Prior via Generative Pre-Training</h2>
+          <div class="is-size-5">
+            <span class="author-block">
+                <a href="https://sierkinhane.github.io/" style="color:#008AD7;font-weight:normal;">Jinheng Xie</a>,                
+            </span>
+            <span class="author-block">
+              <a href="" style="color:#008AD7;font-weight:normal;">Kai Ye</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/ydli-ai" style="color:#008AD7;font-weight:normal;">Yudong Li</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=WsKu4EMAAAAJ&hl=en" style="color:#008AD7;font-weight:normal;">Yuexiang Li</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://qinghonglin.github.io/" style="color:#008AD7;font-weight:normal;">Kevin Qinghong Lin</a>,
+            </span>
+            <br>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=vAIECxgAAAAJ&hl" style="color:#008AD7;font-weight:normal;">Yefeng Zheng</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=AZ_y9HgAAAAJ&hl" style="color:#008AD7;font-weight:normal;">Linlin Shen</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=h1-3lSoAAAAJ&hl" style="color:#008AD7;font-weight:normal;">Mike Zheng Shou</a>
+            </span>
+          </div>
+
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b> <a href="https://sites.google.com/view/showlab/home"> Show Lab, National University of Singapore </a> </span>
+            <span class="author-block"><b style="color:#F2A900; font-weight:normal">&#x25B6 </b> Shenzhen University </span>
+            <span class="author-block"><b style="color:#00A4EF; font-weight:normal">&#x25B6 </b> Jarvis Lab, Tencent </span>
+            <!-- <span class="author-block"><b style="color:#008AD7; font-weight:normal">&#x25B6 </b>Microsoft Cloud & AI </span> -->
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <!-- <span class="author-block"><sup>*</sup>Equal Contribution </span> -->
+            <!-- <span class="author-block"><sup>&#x2628;</sup>Equal Advisory Contribution, </span> -->
+            <!-- <span class="author-block"><sup>&#x2691;</sup>Project Lead </span> -->
+          </div>
+
+          <br>
+         <!--  <div class="is-size-5 publication-authors">
+            <span class="author-block"><b style="color:#e08ba0; font-weight:normal"> <b>In CVPR2023</b> </b></span>
+          </div> -->
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=" " target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              
+              <span class="link-block">
+                <a href="https://github.com/Sierkinhane/VisorGPT" target="_blank" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              
+              <!-- <span class="link-block">
+                      <a href=" " target="_blank"
+                         class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        🤗
+                      </span>
+                      <span>Space</span>
+                    </a>
+                  </span> -->
+              
+              <script>
+                  window.addEventListener('load', function() {
+                    const urls = [
+                      'https://bb0eec8976f38a480c.gradio.live',
+                      'https://94c50413658b59829f.gradio.live',
+                      'https://16440e488436f49d99.gradio.live',
+                      'https://02edd560d60615d755.gradio.live',
+                    ];
+                    const randomIndex = Math.floor(Math.random() * urls.length);
+                    const randomURL = urls[randomIndex];
+                    document.getElementById('randomLink').href = randomURL;
+                  });
+                </script>
+              
+              
+              <span class="link-block">
+                <a href=" " target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                  </a>
+              </span>
+              
+              <!-- <span class="link-block">
+                <a href=" " target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-database"></i>
+                  </span>
+                  <span>Dataset</span>
+                  </a>
+              </span> -->
+              
+              <!-- <span class="link-block">
+                <a href=" " target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-laugh"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span> -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    
+<!-- <script>
+      window.addEventListener('load', function() {
+        const urls = [
+          'https://bb0eec8976f38a480c.gradio.live',
+          'https://94c50413658b59829f.gradio.live',
+          'https://16440e488436f49d99.gradio.live',
+          'https://02edd560d60615d755.gradio.live',
+        ];
+        const randomIndex = Math.floor(Math.random() * urls.length);
+        const randomURL = urls[randomIndex];
+        const iframe = document.getElementById('gradio');
+        iframe.setAttribute('src', randomURL);
+      });
+    </script> -->
+
+
+<link rel="stylesheet" type="text/css" href="js/simple_style.css" />
+<script type="text/javascript" src="js/simple_swiper.js"></script>
+
+
+<section class="section">
+<div class="container">
+            <!-- Paper video. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <div class="publication-video">
+                        <!-- Youtube embed code here -->
+                        <iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Various stuff and things in visual data possess specific traits, which can be learned by deep neural networks and are implicitly represented as the visual prior, \emph{e.g.,} object location and shape, in the model. Such prior potentially impacts many vision tasks. For example, in conditional image synthesis, spatial conditions failing to adhere to the prior can result in visually inaccurate synthetic results. This work aims to explicitly learn the visual prior and enable the customization of sampling. Inspired by advances in language modeling, we propose to learn Visual prior via Generative Pre-Training, dubbed VisorGPT. By discretizing visual locations of objects, \emph{e.g.,} bounding boxes, human pose, and instance masks, into sequences, \our~can model visual prior through likelihood maximization. Besides, prompt engineering is investigated to unify various visual locations and enable customized sampling of sequential outputs from the learned prior. Experimental results demonstrate that \our~can effectively model the visual prior, which can be employed for many vision tasks, such as customizing accurate human pose for conditional image synthesis models like ControlNet.
+</b>
+          </p>
+        </div>
+      </div> -->
+    </div>
+    <!--/ Abstract. -->
+    <br>
+    <br>
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe width=“560” height=“315" src=“https://www.youtube.com/embed/__tftoxpBAw” title=“YouTube video player” frameborder=“0” allow=“accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share” allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+
+    
+<!-- <section class="hero is-small is-light">
+    <div class="hero-body"> -->
+        
+    <!--/ Paper video. -->
+    <br>
+    <br>
+    <!-- Paper Model. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Model</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>VisorGPT consists of .</b>:
+          </p>
+          <ul>
+            <li>It has two types of queries (latent queries and text queries) and outputs (semantic outputs and pixel-level outputs).</li>
+            <li>It uses a single text encoder for all text corpus, ranging from class concepts, referring phrases to image captions.</li>
+            <li>It decouples image and text encoder to accomadate cross-image tasks (e.g., image-text retrieval) and within-image tasks (e.g., segmentation and captioning).</li>
+
+          </ul>
+        </div>  
+        <img id="model" width="80%" src="images/ ">
+        <h3 class="subtitle has-text-centered">
+          <p style="font-family:Times New Roman"><b>The architecture of VisorGPT.</b></p>
+        </h3>   
+        <br>
+        <br>
+
+      </div>
+    </div> -->
+    <br>
+    <br>    
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{
+}
+</code></pre>
+  </div>
+</section>
+
+
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+      This website is adapted from <a
+      href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license"
+                                          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+  </div>
+</section>
+
+
+<script src="js/Underscore-min.js"></script>
+<script src="js/index.js"></script>
+
+
+
+</body>
+
+</html>
